@@ -14,18 +14,18 @@ go to dir kafka
 - ##### start kafka server:
 >bin/kafka-server-start.sh config/server.properties
 
-- #####OPTIONAL! create kafka topic: 
+- ##### OPTIONAL! create kafka topic: 
 >bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
 
-- #####start producer kafka: (write text in console and click enter)
+- ##### start producer kafka: (write text in console and click enter)
 >bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 
-- #####start consumer kafka (important command into check produser implementation):
+- ##### start consumer kafka (important command into check produser implementation):
 >bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 
-###2.Implement kafka consumer.
+### 2.Implement kafka consumer.
 
-- #####Add dependency to pom.xml
+- ##### Add dependency to pom.xml
 ```xml
 <dependency>
   <groupId>org.springframework.cloud</groupId>
@@ -41,7 +41,7 @@ go to dir kafka
 </dependency>
 ```
 
-- #####Create interface with binder
+- ##### Create interface with binder
 RESERVATION_IN is topic kafka, and must equals topic with application.properties
 ```java
         interface ReservationBinding {
@@ -53,13 +53,13 @@ RESERVATION_IN is topic kafka, and must equals topic with application.properties
         }
 ```
 
-- #####Add annotation in run class with binder kafka
+- ##### Add annotation in run class with binder kafka
 ReservationBinter this is interface binder, create ahead
 ```java
 @EnableBinding(ReservationBinding.class)
 ```
 
-- #####Create method listener topic kafka
+- ##### Create method listener topic kafka
 ```java
 @StreamListener(ReservationBinding.RESERVATION_IN)
 public void processReservationListener(Reservation rn) {
@@ -67,7 +67,7 @@ public void processReservationListener(Reservation rn) {
 }
 ```
 
-- #####Add posts to application.properties
+- ##### Add posts to application.properties
 ```java
   spring.cloud.stream.kafka.streams.binder.configuration.commit.interval.mms=1000
   spring.cloud.stream.kafka.streams.binder.configuration.default.key.serde=org.apache.kafka.common.serialization.Serdes$StringSerde
@@ -81,4 +81,4 @@ public void processReservationListener(Reservation rn) {
   spring.cloud.stream.bindings.output.producer.use-native-encoding=true
 ```
 
-###3.Implement Producer Kafka look to link `<link>` :  https://github.com/michalk933/reservation-client
+### 3.Implement Producer Kafka look to link `<link>` :  https://github.com/michalk933/reservation-client
