@@ -1,17 +1,17 @@
 How to run kafki in PC with Mac OS 
 ====================
 
-###1.Download kafka and zookeeper server. Run two server.
+### 1.Download kafka and zookeeper server. Run two server.
 
 - (`<link>` : https://kafka.apache.org/quickstart#quickstart_download)
 download kafka
 go to dir kafka 
 
 
-- #####start zookeeper in dir:
+- ##### start zookeeper in dir:
 >bin/zookeeper-server-start.sh config/zookeeper.properties
 
-- #####start kafka server:
+- ##### start kafka server:
 >bin/kafka-server-start.sh config/server.properties
 
 - #####OPTIONAL! create kafka topic: 
